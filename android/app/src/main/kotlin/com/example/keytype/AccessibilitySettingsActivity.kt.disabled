@@ -1,0 +1,250 @@
+package com.nematiai.keytype
+
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+
+/**
+ * Activity for managing keyboard accessibility settings
+ * Allows users to customize accessibility features like keyboard size, high contrast mode, etc.
+ */
+class AccessibilitySettingsActivity : AppCompatActivity() {
+    
+    private lateinit var accessibilityManager: KeyboardAccessibilityManager
+    
+    // UI Components
+    private lateinit var highContrastSwitch: Switch
+    private lateinit var colorBlindModeSwitch: Switch
+    private lateinit var hapticFeedbackSwitch: Switch
+    private lateinit var audioFeedbackSwitch: Switch
+    private lateinit var keyboardSizeSpinner: Spinner
+    private lateinit var longPressDelaySeekBar: SeekBar
+    private lateinit var longPressDelayText: TextView
+    private lateinit var previewLayout: LinearLayout
+    private lateinit var saveButton: Button
+    private lateinit var resetButton: Button
+    
+    companion object {
+        const val TAG = "AccessibilitySettings"
+        
+        fun createIntent(context: Context): Intent {
+            return Intent(context, AccessibilitySettingsActivity::class.java)
+        }
+    }
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_accessibility_settings)
+        
+        // Initialize accessibility manager
+        accessibilityManager = KeyboardAccessibilityManager(this)
+        accessibilityManager.initialize()
+        
+        // Initialize UI components
+        initializeViews()
+        setupEventListeners()
+        loadCurrentSettings()
+        updatePreview()
+    }
+    
+    /**
+     * Initialize all UI components
+     */
+    private fun initializeViews() {
+        highContrastSwitch = findViewById(R.id.high_contrast_switch)
+        colorBlindModeSwitch = findViewById(R.id.color_blind_mode_switch)
+        hapticFeedbackSwitch = findViewById(R.id.haptic_feedback_switch)
+        audioFeedbackSwitch = findViewById(R.id.audio_feedback_switch)
+        keyboardSizeSpinner = findViewById(R.id.keyboard_size_spinner)
+        longPressDelaySeekBar = findViewById(R.id.long_press_delay_seekbar)
+        longPressDelayText = findViewById(R.id.long_press_delay_text)
+        previewLayout = findViewById(R.id.preview_layout)
+        saveButton = findViewById(R.id.save_button)
+        resetButton = findViewById(R.id.reset_button)
+        
+        // Setup keyboard size spinner
+        setupKeyboardSizeSpinner()
+        
+        // Setup long press delay seekbar
+        setupLongPressDelaySeekBar()
+    }
+    
+    /**
+     * Setup keyboard size spinner with options
+     */
+    private fun setupKeyboardSizeSpinner() {
+        val sizeOptions = KeyboardAccessibilityManager.KeyboardSize.values().map { it.displayName }
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, sizeOptions)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        keyboardSizeSpinner.adapter = adapter
+    }
+    
+    /**
+     * Setup long press delay seekbar
+     */
+    private fun setupLongPressDelaySeekBar() {
+        longPressDelaySeekBar.max = 2000 // 0-2000ms
+        longPressDelaySeekBar.progress = 500 // Default 500ms
+        updateLongPressDelayText(500)
+    }
+    
+    /**
+     * Setup event listeners for all UI components
+     */
+    private fun setupEventListeners() {
+        // Switch listeners
+        highContrastSwitch.setOnCheckedChangeListener { _, isChecked ->
+            updatePreview()
+        }
+        
+        colorBlindModeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            updatePreview()
+        }
+        
+        hapticFeedbackSwitch.setOnCheckedChangeListener { _, isChecked ->
+            // Provide haptic feedback when toggling this setting
+            if (isChecked) {
+                hapticFeedbackSwitch.performHapticFeedback(android.view.HapticFeedbackConstants.CONTEXT_CLICK)
+            }
+        }
+        
+        // Spinner listener
+        keyboardSizeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                updatePreview()
+            }
+            
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+        
+        // SeekBar listener
+        longPressDelaySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                updateLongPressDelayText(progress)
+            }
+            
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
+        
+        // Button listeners
+        saveButton.setOnClickListener {
+            saveSettings()
+        }
+        
+        resetButton.setOnClickListener {
+            resetToDefaults()
+        }
+    }
+    
+    /**
+     * Load current accessibility settings
+     */
+    private fun loadCurrentSettings() {
+        val config = accessibilityManager.getAccessibilityConfig()
+        
+        highContrastSwitch.isChecked = config.isHighContrastMode
+        colorBlindModeSwitch.isChecked = config.isColorBlindFriendlyMode
+        hapticFeedbackSwitch.isChecked = config.isHapticFeedbackEnabled
+        audioFeedbackSwitch.isChecked = config.isAudioFeedbackEnabled
+        
+        // Set keyboard size spinner
+        val sizeIndex = KeyboardAccessibilityManager.KeyboardSize.values().indexOf(config.keyboardSize)
+        keyboardSizeSpinner.setSelection(sizeIndex)
+        
+        // Set long press delay
+        longPressDelaySeekBar.progress = config.longPressDelay.toInt()
+        updateLongPressDelayText(config.longPressDelay.toInt())
+    }
+    
+    /**
+     * Update long press delay text display
+     */
+    private fun updateLongPressDelayText(delayMs: Int) {
+        longPressDelayText.text = "${delayMs}ms"
+    }
+    
+    /**
+     * Update preview layout to show current settings
+     */
+    private fun updatePreview() {
+        val isHighContrast = highContrastSwitch.isChecked
+        val isColorBlindMode = colorBlindModeSwitch.isChecked
+        val selectedSize = KeyboardAccessibilityManager.KeyboardSize.values()[keyboardSizeSpinner.selectedItemPosition]
+        
+        // Apply preview styling
+        if (isHighContrast) {
+            previewLayout.setBackgroundResource(R.drawable.ai_button_high_contrast_bg)
+        } else {
+            previewLayout.setBackgroundResource(R.drawable.ai_button_rewrite_bg)
+        }
+        
+        // Apply size scaling
+        previewLayout.scaleX = selectedSize.multiplier
+        previewLayout.scaleY = selectedSize.multiplier
+        
+        // Apply color blind friendly colors if enabled
+        if (isColorBlindMode) {
+            previewLayout.setBackgroundColor(getColor(R.color.colorblind_safe_blue))
+        }
+    }
+    
+    /**
+     * Save current settings
+     */
+    private fun saveSettings() {
+        val selectedSize = KeyboardAccessibilityManager.KeyboardSize.values()[keyboardSizeSpinner.selectedItemPosition]
+        val longPressDelay = longPressDelaySeekBar.progress.toLong()
+        
+        val newConfig = KeyboardAccessibilityManager.AccessibilityConfig(
+            isHighContrastMode = highContrastSwitch.isChecked,
+            keyboardSize = selectedSize,
+            longPressDelay = longPressDelay,
+            isHapticFeedbackEnabled = hapticFeedbackSwitch.isChecked,
+            isAudioFeedbackEnabled = audioFeedbackSwitch.isChecked,
+            isColorBlindFriendlyMode = colorBlindModeSwitch.isChecked
+        )
+        
+        accessibilityManager.updateAccessibilityConfig(newConfig)
+        
+        // Show confirmation
+        Toast.makeText(this, "Accessibility settings saved", Toast.LENGTH_SHORT).show()
+        
+        // Provide haptic feedback
+        if (hapticFeedbackSwitch.isChecked) {
+            saveButton.performHapticFeedback(android.view.HapticFeedbackConstants.CONFIRM)
+        }
+        
+        // Close activity
+        finish()
+    }
+    
+    /**
+     * Reset all settings to defaults
+     */
+    private fun resetToDefaults() {
+        highContrastSwitch.isChecked = KeyboardAccessibilityManager.DEFAULT_HIGH_CONTRAST
+        colorBlindModeSwitch.isChecked = KeyboardAccessibilityManager.DEFAULT_COLOR_BLIND_MODE
+        hapticFeedbackSwitch.isChecked = KeyboardAccessibilityManager.DEFAULT_HAPTIC_FEEDBACK
+        audioFeedbackSwitch.isChecked = KeyboardAccessibilityManager.DEFAULT_AUDIO_FEEDBACK
+        
+        val defaultSizeIndex = KeyboardAccessibilityManager.KeyboardSize.values().indexOf(KeyboardAccessibilityManager.DEFAULT_KEYBOARD_SIZE)
+        keyboardSizeSpinner.setSelection(defaultSizeIndex)
+        
+        longPressDelaySeekBar.progress = KeyboardAccessibilityManager.DEFAULT_LONG_PRESS_DELAY.toInt()
+        updateLongPressDelayText(KeyboardAccessibilityManager.DEFAULT_LONG_PRESS_DELAY.toInt())
+        
+        updatePreview()
+        
+        Toast.makeText(this, "Settings reset to defaults", Toast.LENGTH_SHORT).show()
+    }
+    
+    override fun onDestroy() {
+        super.onDestroy()
+        accessibilityManager.cleanup()
+    }
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Magic wand handle -->
+    <path
+        android:fillColor="?attr/aiButtonIconColor"
+        android:pathData="M15.5,14l4.5,4.5c0.39,0.39 0.39,1.02 0,1.41c-0.39,0.39 -1.02,0.39 -1.41,0L14,15.41c-0.39,-0.39 -0.39,-1.02 0,-1.41c0.39,-0.39 1.02,-0.39 1.41,0L15.5,14z"/>
+    <!-- Main sparkle -->
+    <path
+        android:fillColor="?attr/aiButtonIconColor"
+        android:pathData="M9,3l0.5,2L12,5.5L9.5,6L9,8L8.5,6L6,5.5L8.5,5L9,3z"/>
+    <!-- Secondary sparkles -->
+    <path
+        android:fillColor="?attr/aiButtonIconColor"
+        android:fillAlpha="0.8"
+        android:pathData="M4,9l0.5,1.5L6,11l-1.5,0.5L4,13l-0.5,-1.5L2,11l1.5,-0.5L4,9z"/>
+    <path
+        android:fillColor="?attr/aiButtonIconColor"
+        android:fillAlpha="0.6"
+        android:pathData="M12,1l0.25,0.75L13,2l-0.75,0.25L12,3l-0.25,-0.75L11,2l0.75,-0.25L12,1z"/>
+    <path
+        android:fillColor="?attr/aiButtonIconColor"
+        android:fillAlpha="0.7"
+        android:pathData="M17,6l0.25,0.75L18,7l-0.75,0.25L17,8l-0.25,-0.75L16,7l0.75,-0.25L17,6z"/>
+    <path
+        android:fillColor="?attr/aiButtonIconColor"
+        android:fillAlpha="0.5"
+        android:pathData="M6,1l0.25,0.75L7,2l-0.75,0.25L6,3l-0.25,-0.75L5,2l0.75,-0.25L6,1z"/>
+</vector>

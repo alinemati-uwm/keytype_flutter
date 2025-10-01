@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#1A1A1A">
+
+    <!-- Enhanced AI Action Buttons Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
+
+        <!-- Enhanced Rewrite Button -->
+        <LinearLayout
+            android:id="@+id/rewrite_button"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/min_touch_target_size"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:background="@drawable/ai_button_rewrite_bg"
+            android:padding="12dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:contentDescription="@string/accessibility_rewrite_button"
+            android:importantForAccessibility="yes"
+            android:minHeight="@dimen/min_touch_target_size"
+            android:minWidth="@dimen/min_touch_target_size">
+
+            <ImageView
+                android:id="@+id/rewrite_icon"
+                android:layout_width="@dimen/icon_size_medium"
+                android:layout_height="@dimen/icon_size_medium"
+                android:src="@drawable/ic_edit_modern"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/accessibility_rewrite_button"
+                android:tint="@color/ai_button_text_dark"
+                android:importantForAccessibility="no" />
+
+            <TextView
+                android:id="@+id/rewrite_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rewrite"
+                android:textSize="@dimen/ai_button_text_size_medium"
+                android:textColor="@color/ai_button_text_dark"
+                android:fontFamily="sans-serif-medium"
+                android:importantForAccessibility="no" />
+
+            <ProgressBar
+                android:id="@+id/rewrite_progress"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:visibility="gone"
+                android:indeterminateTint="@color/ai_button_text_dark"
+                style="?android:attr/progressBarStyleSmall" />
+
+        </LinearLayout>
+
+        <!-- Summarize Button -->
+        <LinearLayout
+            android:id="@+id/summarize_button"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/min_touch_target_size"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:background="@drawable/ai_button_summarize_bg"
+            android:padding="12dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:contentDescription="@string/accessibility_summarize_button"
+            android:importantForAccessibility="yes"
+            android:minHeight="@dimen/min_touch_target_size"
+            android:minWidth="@dimen/min_touch_target_size">
+
+            <ImageView
+                android:id="@+id/summarize_icon"
+                android:layout_width="@dimen/icon_size_medium"
+                android:layout_height="@dimen/icon_size_medium"
+                android:src="@drawable/ic_summarize"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/accessibility_summarize_button"
+                android:tint="@color/ai_button_text_dark"
+                android:importantForAccessibility="no" />
+
+            <TextView
+                android:id="@+id/summarize_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Summari"
+                android:textSize="@dimen/ai_button_text_size_medium"
+                android:textColor="@color/ai_button_text_dark"
+                android:fontFamily="sans-serif-medium"
+                android:importantForAccessibility="no" />
+
+            <ProgressBar
+                android:id="@+id/summarize_progress"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:visibility="gone"
+                android:indeterminateTint="@color/ai_button_text_dark"
+                style="?android:attr/progressBarStyleSmall" />
+
+        </LinearLayout>
+
+        <!-- Generate Button -->
+        <LinearLayout
+            android:id="@+id/generate_button"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/min_touch_target_size"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:background="@drawable/ai_button_generate_bg"
+            android:padding="12dp"
+            android:layout_marginEnd="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:contentDescription="@string/accessibility_generate_button"
+            android:importantForAccessibility="yes"
+            android:minHeight="@dimen/min_touch_target_size"
+            android:minWidth="@dimen/min_touch_target_size">
+
+            <ImageView
+                android:id="@+id/generate_icon"
+                android:layout_width="@dimen/icon_size_medium"
+                android:layout_height="@dimen/icon_size_medium"
+                android:src="@drawable/ic_generate"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/accessibility_generate_button"
+                android:tint="@color/ai_button_text_dark"
+                android:importantForAccessibility="no" />
+
+            <TextView
+                android:id="@+id/generate_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Generat"
+                android:textSize="@dimen/ai_button_text_size_medium"
+                android:textColor="@color/ai_button_text_dark"
+                android:fontFamily="sans-serif-medium"
+                android:importantForAccessibility="no" />
+
+            <ProgressBar
+                android:id="@+id/generate_progress"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:visibility="gone"
+                android:indeterminateTint="@color/ai_button_text_dark"
+                style="?android:attr/progressBarStyleSmall" />
+
+        </LinearLayout>
+
+        <!-- Theme Toggle Button -->
+        <ImageButton
+            android:id="@+id/theme_toggle"
+            android:layout_width="@dimen/min_touch_target_size"
+            android:layout_height="@dimen/min_touch_target_size"
+            android:background="@drawable/theme_toggle_bg"
+            android:src="@drawable/ic_theme_selector"
+            android:contentDescription="@string/accessibility_theme_toggle"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerInside"
+            android:tint="@color/theme_toggle_icon_dark"
+            android:importantForAccessibility="yes"
+            android:minHeight="@dimen/min_touch_target_size"
+            android:minWidth="@dimen/min_touch_target_size" />
+
+    </LinearLayout>
+
+    <!-- Main Keyboard View -->
+    <android.inputmethodservice.KeyboardView
+        android:id="@+id/keyboard_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:keyBackground="@drawable/key_background_modern"
+        android:keyTextColor="@color/key_text_dark"
+        android:keyPreviewLayout="@layout/key_preview"
+        android:shadowColor="@color/shadow_dark"
+        android:shadowRadius="2"
+        android:layout_marginTop="4dp"
+        android:importantForAccessibility="yes"
+        android:contentDescription="@string/accessibility_keyboard_letters" />
+
+</LinearLayout>

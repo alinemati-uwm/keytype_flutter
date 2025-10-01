@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- AI Button Dimensions -->
+    <dimen name="ai_button_text_size_medium">14sp</dimen>
+    <dimen name="ai_button_height_medium">48dp</dimen>
+    
+    <!-- Icon Dimensions -->
+    <dimen name="icon_size_medium">24dp</dimen>
+    
+    <!-- Keyboard Margins -->
+    <dimen name="keyboard_margin_landscape">8dp</dimen>
+    <dimen name="keyboard_margin_portrait">12dp</dimen>
+    
+    <!-- Key Dimensions -->
+    <dimen name="key_padding_medium">8dp</dimen>
+    
+    <!-- Accessibility -->
+    <dimen name="min_touch_target_size">48dp</dimen>
+</resources>

@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="?attr/keyboardBackgroundColor">
+
+    <!-- AI Action Buttons Row -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="8dp">
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+    
+            <!-- Rewrite Button -->
+            <LinearLayout
+                android:id="@+id/rewrite_button"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:background="@drawable/ai_button_rewrite_bg"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center">
+    
+                <TextView
+                    android:id="@+id/rewrite_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rewrite"
+                    android:textSize="13sp"
+                    android:textColor="?attr/aiButtonTextColor"
+                    android:fontFamily="sans-serif-medium" />
+    
+                <ProgressBar
+                    android:id="@+id/rewrite_progress"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="6dp"
+                    android:visibility="gone"
+                    style="?android:attr/progressBarStyleSmall" />
+    
+            </LinearLayout>
+    
+            <!-- Summarize Button -->
+            <LinearLayout
+                android:id="@+id/summarize_button"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:background="@drawable/ai_button_summarize_bg"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center">
+    
+                <TextView
+                    android:id="@+id/summarize_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Summarize"
+                    android:textSize="13sp"
+                    android:textColor="?attr/aiButtonTextColor"
+                    android:fontFamily="sans-serif-medium" />
+    
+                <ProgressBar
+                    android:id="@+id/summarize_progress"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="6dp"
+                    android:visibility="gone"
+                    style="?android:attr/progressBarStyleSmall" />
+    
+            </LinearLayout>
+    
+            <!-- Generate Button -->
+            <LinearLayout
+                android:id="@+id/generate_button"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:background="@drawable/ai_button_generate_bg"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center">
+    
+                <TextView
+                    android:id="@+id/generate_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Generate"
+                    android:textSize="13sp"
+                    android:textColor="?attr/aiButtonTextColor"
+                    android:fontFamily="sans-serif-medium" />
+    
+                <ProgressBar
+                    android:id="@+id/generate_progress"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="6dp"
+                    android:visibility="gone"
+                    style="?android:attr/progressBarStyleSmall" />
+    
+            </LinearLayout>
+            
+            <!-- Translate Button -->
+            <LinearLayout
+                android:id="@+id/translate_button"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:background="@drawable/ai_button_translate_bg"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center">
+    
+                <TextView
+                    android:id="@+id/translate_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Translate"
+                    android:textSize="13sp"
+                    android:textColor="?attr/aiButtonTextColor"
+                    android:fontFamily="sans-serif-medium" />
+    
+                <ProgressBar
+                    android:id="@+id/translate_progress"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="6dp"
+                    android:visibility="gone"
+                    style="?android:attr/progressBarStyleSmall" />
+    
+            </LinearLayout>
+            
+            <!-- Fix Grammar Button -->
+            <LinearLayout
+                android:id="@+id/fix_grammar_button"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:background="@drawable/ai_button_fix_grammar_bg"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center">
+    
+                <TextView
+                    android:id="@+id/fix_grammar_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fix Grammar"
+                    android:textSize="12sp"
+                    android:textColor="?attr/aiButtonTextColor"
+                    android:fontFamily="sans-serif-medium" />
+    
+                <ProgressBar
+                    android:id="@+id/fix_grammar_progress"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="6dp"
+                    android:visibility="gone"
+                    style="?android:attr/progressBarStyleSmall" />
+    
+            </LinearLayout>
+            
+            <!-- Make Formal Button -->
+            <LinearLayout
+                android:id="@+id/make_formal_button"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:background="@drawable/ai_button_make_formal_bg"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center">
+    
+                <TextView
+                    android:id="@+id/make_formal_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Make Formal"
+                    android:textSize="12sp"
+                    android:textColor="?attr/aiButtonTextColor"
+                    android:fontFamily="sans-serif-medium" />
+    
+                <ProgressBar
+                    android:id="@+id/make_formal_progress"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="6dp"
+                    android:visibility="gone"
+                    style="?android:attr/progressBarStyleSmall" />
+    
+            </LinearLayout>
+            
+            <!-- Make Informal Button -->
+            <LinearLayout
+                android:id="@+id/make_informal_button"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:background="@drawable/ai_button_make_informal_bg"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center">
+    
+                <TextView
+                    android:id="@+id/make_informal_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Make Casual"
+                    android:textSize="12sp"
+                    android:textColor="?attr/aiButtonTextColor"
+                    android:fontFamily="sans-serif-medium" />
+    
+                <ProgressBar
+                    android:id="@+id/make_informal_progress"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="6dp"
+                    android:visibility="gone"
+                    style="?android:attr/progressBarStyleSmall" />
+    
+            </LinearLayout>
+    
+            <!-- Theme Toggle Button -->
+            <ImageButton
+                android:id="@+id/theme_toggle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/theme_toggle_bg"
+                android:src="@drawable/ic_theme_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="centerInside"
+                android:layout_marginStart="4dp" />
+                
+        </LinearLayout>
+        
+    </HorizontalScrollView>
+
+    <!-- Container for keyboard and AI cards -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Main Keyboard View -->
+        <android.inputmethodservice.KeyboardView
+            android:id="@+id/keyboard_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/keyboardBackgroundColor"
+            android:keyBackground="@drawable/key_background_modern"
+            android:keyTextColor="?attr/keyTextColor"
+            android:layout_marginTop="4dp" />
+
+        <!-- AI Cards Layout (initially hidden) - Embedded directly -->
+        <LinearLayout
+            android:id="@+id/ai_cards_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="?attr/keyboardBackgroundColor"
+            android:padding="20dp"
+            android:visibility="gone">
+
+            <!-- Header with title and close button -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="AI Processing"
+                    android:textColor="?attr/keyTextColor"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-medium" />
+
+                <ImageButton
+                    android:id="@+id/close_ai_cards"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/close_button_bg"
+                    android:src="@drawable/ic_close"
+                    android:scaleType="centerInside"
+                    android:tint="?attr/keyTextColor" />
+
+            </LinearLayout>
+
+            <!-- AI Cards Grid -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- First Row of Cards -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <!-- Card 1 - Purple/Pink Gradient -->
+                    <LinearLayout
+                        android:id="@+id/ai_card_1"
+                        android:layout_width="0dp"
+                        android:layout_height="140dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="12dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/ai_card_bg_1"
+                        android:padding="20dp"
+                        android:gravity="center"
+                        android:elevation="8dp">
+
+                        <TextView
+                            android:id="@+id/card_1_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Analyzing..."
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:layout_marginBottom="12dp" />
+
+                        <View
+                            android:id="@+id/shimmer_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:background="@drawable/shimmer_background" />
+
+                    </LinearLayout>
+
+                    <!-- Card 2 - Blue/Teal Gradient -->
+                    <LinearLayout
+                        android:id="@+id/ai_card_2"
+                        android:layout_width="0dp"
+                        android:layout_height="140dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/ai_card_bg_2"
+                        android:padding="20dp"
+                        android:gravity="center"
+                        android:elevation="8dp">
+
+                        <TextView
+                            android:id="@+id/card_2_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Processing..."
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:layout_marginBottom="12dp" />
+
+                        <View
+                            android:id="@+id/shimmer_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:background="@drawable/shimmer_background" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Second Row of Cards -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Card 3 - Green/Blue Gradient -->
+                    <LinearLayout
+                        android:id="@+id/ai_card_3"
+                        android:layout_width="0dp"
+                        android:layout_height="140dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="12dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/ai_card_bg_3"
+                        android:padding="20dp"
+                        android:gravity="center"
+                        android:elevation="8dp">
+
+                        <TextView
+                            android:id="@+id/card_3_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Generating..."
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:layout_marginBottom="12dp" />
+
+                        <View
+                            android:id="@+id/shimmer_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:background="@drawable/shimmer_background" />
+
+                    </LinearLayout>
+
+                    <!-- Card 4 - Pink/Purple Gradient -->
+                    <LinearLayout
+                        android:id="@+id/ai_card_4"
+                        android:layout_width="0dp"
+                        android:layout_height="140dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/ai_card_bg_4"
+                        android:padding="20dp"
+                        android:gravity="center"
+                        android:elevation="8dp">
+
+                        <TextView
+                            android:id="@+id/card_4_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Optimizing..."
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:layout_marginBottom="12dp" />
+
+                        <View
+                            android:id="@+id/shimmer_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:background="@drawable/shimmer_background" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

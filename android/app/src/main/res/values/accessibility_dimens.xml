@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Accessibility and responsive design dimensions -->
+    
+    <!-- Minimum touch target sizes (following Android accessibility guidelines) -->
+    <!-- min_touch_target_size is defined in main dimens.xml -->
+    <dimen name="recommended_touch_target_size">56dp</dimen>
+    <dimen name="large_touch_target_size">64dp</dimen>
+    
+    <!-- Key sizes for different screen densities -->
+    <dimen name="key_height_small">40dp</dimen>
+    <dimen name="key_height_large">56dp</dimen>
+    <dimen name="key_height_xlarge">64dp</dimen>
+    
+    <dimen name="key_width_small">32dp</dimen>
+    <dimen name="key_width_large">48dp</dimen>
+    <dimen name="key_width_xlarge">56dp</dimen>
+    
+    <!-- Text sizes for different accessibility needs -->
+    <dimen name="key_text_size_small">14sp</dimen>
+    <dimen name="key_text_size_large">18sp</dimen>
+    <dimen name="key_text_size_xlarge">20sp</dimen>
+    
+    <!-- AI button text sizes (unique sizes not in main dimens.xml) -->
+    <dimen name="ai_button_text_size_small">12sp</dimen>
+    <dimen name="ai_button_text_size_large">16sp</dimen>
+    <dimen name="ai_button_text_size_xlarge">18sp</dimen>
+    
+    <!-- Padding and margins for different sizes (unique sizes not in main dimens.xml) -->
+    <dimen name="key_padding_small">6dp</dimen>
+    <dimen name="key_padding_large">10dp</dimen>
+    <dimen name="key_padding_xlarge">12dp</dimen>
+    
+    <!-- Border widths for high contrast mode -->
+    <dimen name="high_contrast_border_width">2dp</dimen>
+    <dimen name="normal_border_width">1dp</dimen>
+    
+    <!-- Focus indicator sizes -->
+    <dimen name="focus_indicator_width">3dp</dimen>
+    <dimen name="focus_indicator_corner_radius">4dp</dimen>
+    
+    <!-- AI button heights for different screen sizes (unique sizes not in main dimens.xml) -->
+    <dimen name="ai_button_height_small">40dp</dimen>
+    <dimen name="ai_button_height_large">56dp</dimen>
+    
+    <!-- Icon sizes for different accessibility needs (unique sizes not in main dimens.xml) -->
+    <dimen name="icon_size_small">16dp</dimen>
+    <dimen name="icon_size_large">28dp</dimen>
+    <dimen name="icon_size_xlarge">32dp</dimen>
+</resources>

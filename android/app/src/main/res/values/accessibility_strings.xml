@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Accessibility strings for screen readers -->
+    
+    <!-- AI Button Content Descriptions (detailed versions) -->
+    <string name="accessibility_rewrite_button_detailed">Rewrite text using AI. Double tap to activate.</string>
+    <string name="accessibility_summarize_button_detailed">Summarize text using AI. Double tap to activate.</string>
+    <string name="accessibility_generate_button_detailed">Generate new text using AI. Double tap to activate.</string>
+    <string name="accessibility_theme_toggle_detailed">Toggle between light and dark theme. Double tap to switch.</string>
+    
+    <!-- AI Button States -->
+    <string name="accessibility_ai_button_processing">Processing AI request, please wait</string>
+    <string name="accessibility_ai_button_success">AI operation completed successfully</string>
+    <string name="accessibility_ai_button_error">AI operation failed, try again</string>
+    <string name="accessibility_ai_button_idle">Ready for AI operation</string>
+    
+    <!-- Keyboard Key Descriptions -->
+    <string name="accessibility_key_backspace">Delete previous character</string>
+    <string name="accessibility_key_shift">Shift key. Double tap for caps lock.</string>
+    <string name="accessibility_key_shift_on">Shift active. Double tap for caps lock.</string>
+    <string name="accessibility_key_caps_lock">Caps lock active. Tap to disable.</string>
+    <string name="accessibility_key_space">Space bar</string>
+    <string name="accessibility_key_enter">Enter or done</string>
+    <string name="accessibility_key_numbers">Switch to numbers and symbols</string>
+    <string name="accessibility_key_letters">Switch to letters</string>
+    <string name="accessibility_key_symbols">Switch to special characters</string>
+    
+    <!-- Keyboard Layout Descriptions (detailed versions) -->
+    <string name="accessibility_keyboard_letters_detailed">Letter keyboard active</string>
+    <string name="accessibility_keyboard_numbers_detailed">Number keyboard active</string>
+    <string name="accessibility_keyboard_symbols_detailed">Symbol keyboard active</string>
+    
+    <!-- Theme Descriptions -->
+    <string name="accessibility_theme_light">Light theme active</string>
+    <string name="accessibility_theme_dark">Dark theme active</string>
+    
+    <!-- Keyboard Size Descriptions -->
+    <string name="accessibility_keyboard_size_small">Small keyboard size</string>
+    <string name="accessibility_keyboard_size_medium">Medium keyboard size</string>
+    <string name="accessibility_keyboard_size_large">Large keyboard size</string>
+    
+    <!-- High Contrast Mode -->
+    <string name="accessibility_high_contrast_enabled">High contrast mode enabled</string>
+    <string name="accessibility_high_contrast_disabled">High contrast mode disabled</string>
+    
+    <!-- Orientation Descriptions -->
+    <string name="accessibility_orientation_portrait">Portrait orientation</string>
+    <string name="accessibility_orientation_landscape">Landscape orientation</string>
+    
+    <!-- Error Messages -->
+    <string name="accessibility_error_no_text">No text available to process</string>
+    <string name="accessibility_error_text_too_long">Text is too long for processing</string>
+    <string name="accessibility_error_service_unavailable">AI service is currently unavailable</string>
+    
+    <!-- Success Messages -->
+    <string name="accessibility_text_processed">Text has been processed successfully</string>
+    <string name="accessibility_theme_changed">Theme has been changed</string>
+    <string name="accessibility_layout_changed">Keyboard layout has been changed</string>
+</resources>

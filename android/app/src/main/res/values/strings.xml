@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KeyType</string>
+    <string name="keyboard_name">KeyType Keyboard</string>
+    <string name="keyboard_description">AI-powered keyboard with rewrite, summarize, and generate features</string>
+    
+    <!-- Accessibility strings -->
+    <string name="accessibility_rewrite_button">Rewrite text using AI</string>
+    <string name="accessibility_summarize_button">Summarize text using AI</string>
+    <string name="accessibility_generate_button">Generate text using AI</string>
+    <string name="accessibility_theme_toggle">Toggle keyboard theme between light and dark</string>
+    <string name="accessibility_keyboard_letters">Letters keyboard layout</string>
+    <string name="accessibility_keyboard_numbers">Numbers keyboard layout</string>
+    <string name="accessibility_keyboard_symbols">Special characters keyboard layout</string>
+</resources>

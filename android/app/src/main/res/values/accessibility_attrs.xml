@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Accessibility and responsive design attributes -->
+    <!-- Note: Some attributes moved to attrs.xml to avoid duplicates -->
+    
+    <!-- Keyboard size attributes -->
+    <attr name="keyHeight" format="dimension" />
+    <attr name="keyWidth" format="dimension" />
+    <attr name="keyTextSize" format="dimension" />
+    <attr name="keyPadding" format="dimension" />
+    
+    <!-- Touch target sizes -->
+    <attr name="keyTouchMargin" format="dimension" />
+    
+    <!-- Accessibility feedback -->
+    <attr name="hapticFeedbackEnabled" format="boolean" />
+    <attr name="audioFeedbackEnabled" format="boolean" />
+    
+    <!-- Color blind friendly attributes -->
+    <attr name="colorBlindFriendlyMode" format="boolean" />
+</resources>

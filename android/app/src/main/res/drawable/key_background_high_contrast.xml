@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- High contrast key background for accessibility -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Pressed state -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/highContrastKeyBackground"/>
+            <corners android:radius="8dp"/>
+            <stroke 
+                android:width="@dimen/high_contrast_border_width" 
+                android:color="?attr/highContrastKeyBorder"/>
+        </shape>
+    </item>
+    
+    <!-- Focused state -->
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/highContrastKeyBackground"/>
+            <corners android:radius="8dp"/>
+            <stroke 
+                android:width="@dimen/focus_indicator_width" 
+                android:color="@color/accessibility_focus_color"/>
+        </shape>
+    </item>
+    
+    <!-- Default state -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/highContrastKeyBackground"/>
+            <corners android:radius="8dp"/>
+            <stroke 
+                android:width="@dimen/high_contrast_border_width" 
+                android:color="?attr/highContrastKeyBorder"/>
+        </shape>
+    </item>
+</selector>

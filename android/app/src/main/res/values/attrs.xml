@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Keyboard Theme Attributes -->
+    <declare-styleable name="KeyboardTheme">
+        <!-- Background Colors -->
+        <attr name="keyboardBackgroundColor" format="color" />
+        <attr name="keyBackgroundColor" format="color" />
+        <attr name="actionKeyBackgroundColor" format="color" />
+        <attr name="keyPressedColor" format="color" />
+        
+        <!-- Text Colors -->
+        <attr name="keyTextColor" format="color" />
+        <attr name="keyTextSecondaryColor" format="color" />
+        <attr name="actionKeyTextColor" format="color" />
+        
+        <!-- Border and Shadow -->
+        <attr name="keyBorderColor" format="color" />
+        <attr name="keyShadowColor" format="color" />
+        
+        <!-- AI Button Colors -->
+        <attr name="aiButtonRewriteStartColor" format="color" />
+        <attr name="aiButtonRewriteEndColor" format="color" />
+        <attr name="aiButtonSummarizeStartColor" format="color" />
+        <attr name="aiButtonSummarizeEndColor" format="color" />
+        <attr name="aiButtonGenerateStartColor" format="color" />
+        <attr name="aiButtonGenerateEndColor" format="color" />
+        <attr name="aiButtonTextColor" format="color" />
+        
+        <!-- Theme Toggle Colors -->
+        <attr name="themeToggleBackgroundColor" format="color" />
+        <attr name="themeToggleIconColor" format="color" />
+        
+        <!-- Status Colors -->
+        <attr name="successColor" format="color" />
+        <attr name="errorColor" format="color" />
+        <attr name="warningColor" format="color" />
+        
+        <!-- Icon Colors -->
+        <attr name="actionKeyIconColor" format="color" />
+        <attr name="aiButtonIconColor" format="color" />
+        <attr name="keyboardModeIconColor" format="color" />
+        
+        <!-- Accessibility Attributes -->
+        <attr name="minTouchTargetSize" format="dimension" />
+        <attr name="iconSize" format="dimension" />
+        <attr name="aiButtonTextSize" format="dimension" />
+        <attr name="keyboardScale" format="float" />
+        <attr name="longPressDelay" format="integer" />
+        
+        <!-- High Contrast Colors -->
+        <attr name="highContrastKeyBackground" format="color" />
+        <attr name="highContrastKeyText" format="color" />
+        <attr name="highContrastKeyBorder" format="color" />
+        <attr name="highContrastActionKeyBackground" format="color" />
+        <attr name="highContrastAIButtonBackground" format="color" />
+        
+        <!-- Color Blind Friendly Colors -->
+        <attr name="colorBlindSafeColor1" format="color" />
+        <attr name="colorBlindSafeColor2" format="color" />
+        <attr name="colorBlindSafeColor3" format="color" />
+    </declare-styleable>
+</resources>

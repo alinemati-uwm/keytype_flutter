@@ -1,0 +1,71 @@
+# Flutter/Dart related files
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+.fvm/
+.env
+.gradle
+.kiro
+
+# IDE related files
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.metadata
+.classpath
+.settings/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Local configuration files
+local.properties
+
+# Temporary files
+*.tmp
+*.temp
+
+# Firebase
+google-services.json
+GoogleService-Info.plist
+
+# Coverage
+coverage/
+
+# Generated files
+*.g.dart
+*.freezed.dart
+*.config.dart
+
+# Platform specific build outputs
+android/app/debug
+android/app/profile
+android/app/release
+android/gradlew
+android/gradlew.bat
+android/gradle/wrapper/gradle-wrapper.jar
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+ios/Pods/
+ios/Runner/GeneratedPluginRegistrant.*
+
+# Web
+web/
+
+# Windows, Linux, macOS desktop
+linux/flutter/ephemeral/
+macos/Flutter/ephemeral/
+windows/flutter/ephemeral/
+.qoder/rules/Coding-Rules.md

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme applied to the Android Window while the process is starting when the OS's Dark Mode setting is on -->
+    <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <!-- Show a splash screen on the activity. Automatically removed when
+             the Flutter engine draws its first frame -->
+        <item name="android:windowBackground">@drawable/launch_background</item>
+    </style>
+    <!-- Theme applied to the Android Window as soon as the process has started.
+         This theme determines the color of the Android Window while your
+         Flutter UI initializes, as well as behind your Flutter UI while its
+         running.
+
+         This Theme is only used starting with V2 of Flutter's Android embedding. -->
+    <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:windowBackground">?android:colorBackground</item>
+    </style>
+    
+    <!-- Keyboard Dark Theme -->
+    <style name="KeyboardDarkTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <!-- Background Colors -->
+        <item name="keyboardBackgroundColor">@color/keyboard_bg_dark</item>
+        <item name="keyBackgroundColor">@color/key_bg_dark</item>
+        <item name="actionKeyBackgroundColor">@color/action_key_bg_dark</item>
+        <item name="keyPressedColor">@color/key_pressed_dark</item>
+        
+        <!-- Text Colors -->
+        <item name="keyTextColor">@color/key_text_dark</item>
+        <item name="keyTextSecondaryColor">@color/key_text_secondary_dark</item>
+        <item name="actionKeyTextColor">@color/action_key_text_dark</item>
+        
+        <!-- Border and Shadow -->
+        <item name="keyBorderColor">@color/border_dark</item>
+        <item name="keyShadowColor">@color/shadow_dark</item>
+        
+        <!-- AI Button Colors -->
+        <item name="aiButtonRewriteStartColor">@color/ai_button_rewrite_start_dark</item>
+        <item name="aiButtonRewriteEndColor">@color/ai_button_rewrite_end_dark</item>
+        <item name="aiButtonSummarizeStartColor">@color/ai_button_summarize_start_dark</item>
+        <item name="aiButtonSummarizeEndColor">@color/ai_button_summarize_end_dark</item>
+        <item name="aiButtonGenerateStartColor">@color/ai_button_generate_start_dark</item>
+        <item name="aiButtonGenerateEndColor">@color/ai_button_generate_end_dark</item>
+        <item name="aiButtonTextColor">@color/ai_button_text_dark</item>
+        
+        <!-- Theme Toggle Colors -->
+        <item name="themeToggleBackgroundColor">@color/theme_toggle_bg_dark</item>
+        <item name="themeToggleIconColor">@color/theme_toggle_icon_dark</item>
+        
+        <!-- Status Colors -->
+        <item name="successColor">@color/success_dark</item>
+        <item name="errorColor">@color/error_dark</item>
+        <item name="warningColor">@color/warning_dark</item>
+        
+        <!-- Icon Colors -->
+        <item name="actionKeyIconColor">@color/action_key_text_dark</item>
+        <item name="aiButtonIconColor">@color/ai_button_text_dark</item>
+        <item name="keyboardModeIconColor">@color/key_text_secondary_dark</item>
+    </style>
+</resources>

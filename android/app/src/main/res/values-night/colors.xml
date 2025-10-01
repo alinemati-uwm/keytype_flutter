@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Theme Colors - High Contrast for Visibility -->
+    <color name="keyboard_bg_dark">#1A1A1A</color>        <!-- Main keyboard background -->
+    <color name="key_bg_dark">#2D2D2D</color>             <!-- Individual key background -->
+    <color name="key_text_dark">#FFFFFF</color>           <!-- Key text (high contrast white) -->
+    <color name="key_text_secondary_dark">#CCCCCC</color> <!-- Secondary text (lighter gray) -->
+    <color name="action_key_bg_dark">#404040</color>      <!-- Action keys (shift, backspace, etc.) -->
+    <color name="action_key_text_dark">#FFFFFF</color>    <!-- Action key text (high contrast) -->
+    <color name="key_pressed_dark">#505050</color>        <!-- Key pressed state -->
+    <color name="border_dark">#404040</color>             <!-- Key borders -->
+    <color name="shadow_dark">#33000000</color>           <!-- Subtle shadows -->
+    
+    <!-- AI Button Colors - Dark Theme -->
+    <color name="ai_button_rewrite_start_dark">#4F46E5</color>
+    <color name="ai_button_rewrite_end_dark">#7C3AED</color>
+    <color name="ai_button_summarize_start_dark">#2563EB</color>
+    <color name="ai_button_summarize_end_dark">#0891B2</color>
+    <color name="ai_button_generate_start_dark">#059669</color>
+    <color name="ai_button_generate_end_dark">#2563EB</color>
+    <color name="ai_button_text_dark">#FFFFFF</color>
+    
+    <!-- Theme Toggle Colors - Dark Theme -->
+    <color name="theme_toggle_bg_dark">#404040</color>
+    <color name="theme_toggle_icon_dark">#FFFFFF</color>
+    
+    <!-- Additional Theme Colors -->
+    <color name="key_shadow_dark">#33000000</color>
+    
+    <!-- Status Colors -->
+    <color name="success_dark">#059669</color>
+    <color name="error_dark">#DC2626</color>
+    <color name="warning_dark">#D97706</color>
+</resources>

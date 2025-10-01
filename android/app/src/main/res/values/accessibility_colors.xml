@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- High contrast colors for accessibility -->
+    
+    <!-- High contrast light theme (unique colors not in main colors.xml) -->
+    <color name="high_contrast_light_action_key">#E0E0E0</color>
+    <color name="high_contrast_light_ai_button">#0066CC</color>
+    <color name="high_contrast_light_ai_button_text">#FFFFFF</color>
+    
+    <!-- High contrast dark theme -->
+    <color name="high_contrast_dark_background">#000000</color>
+    <color name="high_contrast_dark_key_background">#000000</color>
+    <color name="high_contrast_dark_key_text">#FFFFFF</color>
+    <color name="high_contrast_dark_key_border">#FFFFFF</color>
+    <color name="high_contrast_dark_action_key">#333333</color>
+    <color name="high_contrast_dark_ai_button">#0099FF</color>
+    <color name="high_contrast_dark_ai_button_text">#000000</color>
+    
+    <!-- Additional color blind friendly colors (unique ones not in main colors.xml) -->
+    <color name="colorblind_safe_red">#CC78BC</color>
+    <color name="colorblind_safe_purple">#CA9161</color>
+    <color name="colorblind_safe_brown">#FBAFE4</color>
+    <color name="colorblind_safe_pink">#949494</color>
+    <color name="colorblind_safe_gray">#56B4E9</color>
+    
+    <!-- Focus and selection colors -->
+    <color name="accessibility_focus_color">#FF6600</color>
+    <color name="accessibility_selection_color">#3366CC</color>
+    <color name="accessibility_error_color">#CC0000</color>
+    <color name="accessibility_success_color">#00AA00</color>
+</resources>

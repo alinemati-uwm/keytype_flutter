@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ai_cards_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="?attr/keyboardBackgroundColor"
+    android:padding="20dp"
+    android:visibility="gone">
+
+    <!-- Header with title and close button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="AI Processing"
+            android:textColor="?attr/keyTextColor"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <ImageButton
+            android:id="@+id/close_ai_cards"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/close_button_bg"
+            android:src="@drawable/ic_close"
+            android:scaleType="centerInside"
+            android:tint="?attr/keyTextColor" />
+
+    </LinearLayout>
+
+    <!-- AI Cards Grid -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- First Row of Cards -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <!-- Card 1 - Purple/Pink Gradient -->
+            <LinearLayout
+                android:id="@+id/ai_card_1"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical"
+                android:background="@drawable/ai_card_bg_1"
+                android:padding="16dp"
+                android:gravity="center"
+                android:elevation="8dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:id="@+id/card_1_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Analyzing..."
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:layout_marginBottom="8dp" />
+
+                <View
+                    android:id="@+id/shimmer_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@drawable/shimmer_background" />
+
+            </LinearLayout>
+
+            <!-- Card 2 - Blue/Teal Gradient -->
+            <LinearLayout
+                android:id="@+id/ai_card_2"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:orientation="vertical"
+                android:background="@drawable/ai_card_bg_2"
+                android:padding="16dp"
+                android:gravity="center"
+                android:elevation="8dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:id="@+id/card_2_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Processing..."
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:layout_marginBottom="8dp" />
+
+                <View
+                    android:id="@+id/shimmer_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@drawable/shimmer_background" />
+
+            </LinearLayout>
+
+            <!-- Card 3 - Green/Blue Gradient -->
+            <LinearLayout
+                android:id="@+id/ai_card_3"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:orientation="vertical"
+                android:background="@drawable/ai_card_bg_3"
+                android:padding="16dp"
+                android:gravity="center"
+                android:elevation="8dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:id="@+id/card_3_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Generating..."
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:layout_marginBottom="8dp" />
+
+                <View
+                    android:id="@+id/shimmer_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@drawable/shimmer_background" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Second Row of Cards -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Card 4 - Pink/Purple Gradient -->
+            <LinearLayout
+                android:id="@+id/ai_card_4"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:orientation="vertical"
+                android:background="@drawable/ai_card_bg_4"
+                android:padding="16dp"
+                android:gravity="center"
+                android:elevation="8dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:id="@+id/card_4_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Optimizing..."
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:layout_marginBottom="8dp" />
+
+                <View
+                    android:id="@+id/shimmer_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@drawable/shimmer_background" />
+
+            </LinearLayout>
+
+            <!-- Card 5 - Orange/Red Gradient -->
+            <LinearLayout
+                android:id="@+id/ai_card_5"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:orientation="vertical"
+                android:background="@drawable/ai_card_bg_5"
+                android:padding="16dp"
+                android:gravity="center"
+                android:elevation="8dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:id="@+id/card_5_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Finalizing..."
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:layout_marginBottom="8dp" />
+
+                <View
+                    android:id="@+id/shimmer_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@drawable/shimmer_background" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
