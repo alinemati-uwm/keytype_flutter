@@ -45,6 +45,13 @@ class LoginController extends GetxController {
   final confirmPasswordFocusNode = FocusNode();
   final authApiCalls = getIt<AuthApiCalls>();
 
+  // google login
+  final RxBool isGoogleLoading = false.obs;
+  final Rx<GoogleSignInAccount?> googleAccount = Rx<GoogleSignInAccount?>(null);
+
+
+
+
   // Pure OAuth configuration using Google Cloud Console
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: OAuthConfig.googleScopes,
@@ -481,75 +488,158 @@ class LoginController extends GetxController {
     isLoadingResendEmail.value = false;
   }
 
-  Future<void> signInWithGoogle() async {
-    try {
-      // Set loading state
-      isLoading.value = true;
+  // Future<void> signInWithGoogle() async {
+  //   try {
+  //     // Set loading state
+  //     isLoading.value = true;
+  //
+  //     // Debug information
+  //     if (kDebugMode) {
+  //       print('=== Google Sign-In Debug Info ===');
+  //       print('Package: com.nematiai.keytype');
+  //       print(
+  //           'SHA-1: 63:6A:16:A9:C5:96:38:B9:ED:61:A3:FC:12:C6:DE:23:81:B3:10:DE');
+  //       print('Server Client ID: ${OAuthConfig.googleServerClientId}');
+  //       print('================================');
+  //     }
+  //
+  //     // Sign out any existing sessions
+  //     await _googleSignIn.signOut();
+  //
+  //     // Attempt to sign in
+  //     final GoogleSignInAccount? account = await _googleSignIn.signIn();
+  //
+  //     if (account == null) {
+  //       // User cancelled the sign-in
+  //       ToastDialogs.showErrorIconNotification(
+  //         message: 'Google sign-in cancelled',
+  //       );
+  //       return;
+  //     }
+  //
+  //     // Get authentication details
+  //     final GoogleSignInAuthentication auth = await account.authentication;
+  //
+  //     if (auth.accessToken == null) {
+  //       ToastDialogs.showErrorIconNotification(
+  //         message: 'Failed to get Google access token',
+  //       );
+  //       return;
+  //     }
+  //
+  //     // Call API with Google access token
+  //     await authApiCalls.callGoogleAuth(auth.accessToken!).fold(
+  //       (failure) {
+  //         ToastDialogs.showErrorIconNotification(
+  //           message: failure.message ?? 'Google sign-in failed',
+  //         );
+  //         print('Google Sign-In API Error: ${failure.message}');
+  //       },
+  //       (loginResponseModel) async {
+  //         await Utils.saveToken(
+  //           loginResponseModel.refreshToken,
+  //           loginResponseModel.accessToken,
+  //         );
+  //
+  //         // Navigate to main screen
+  //         Get.offNamedUntil(Routes.main, (route) => false);
+  //       },
+  //     );
+  //   } on PlatformException catch (error) {
+  //     // Handle platform-specific errors
+  //     String errorMessage = 'Google sign-in failed';
+  //
+  //     switch (error.code) {
+  //       case 'sign_in_failed':
+  //         errorMessage =
+  //             'Google sign-in not properly configured. Please check Firebase setup.';
+  //         break;
+  //       case 'network_error':
+  //         errorMessage =
+  //             'Network error. Please check your internet connection.';
+  //         break;
+  //       case 'sign_in_canceled':
+  //         errorMessage = 'Sign-in cancelled';
+  //         break;
+  //       default:
+  //         errorMessage = 'Google sign-in failed: ${error.message}';
+  //     }
+  //
+  //     ToastDialogs.showErrorIconNotification(message: errorMessage);
+  //     print('Google Sign-In Platform Error: ${error.code} - ${error.message}');
+  //   } catch (error) {
+  //     ToastDialogs.showErrorIconNotification(
+  //       message: 'An unexpected error occurred during Google sign-in',
+  //     );
+  //     print('Google Sign-In Unexpected Error: $error');
+  //   } finally {
+  //     isLoading.value = false;
+  //   }
+  // }
 
-      // Debug information
+
+
+  Future<void> signInWithGoogle({BuildContext? context, bool forceChooser = false}) async {
+    try {
+      // Use a dedicated Google loading flag
+      isGoogleLoading.value = true;
+
       if (kDebugMode) {
         print('=== Google Sign-In Debug Info ===');
         print('Package: com.nematiai.keytype');
-        print(
-            'SHA-1: 63:6A:16:A9:C5:96:38:B9:ED:61:A3:FC:12:C6:DE:23:81:B3:10:DE');
+        print('SHA-1: 63:6A:16:A9:C5:96:38:B9:ED:61:A3:FC:12:C6:DE:23:81:B3:10:DE');
         print('Server Client ID: ${OAuthConfig.googleServerClientId}');
         print('================================');
       }
 
-      // Sign out any existing sessions
-      await _googleSignIn.signOut();
+      // If forceChooser is requested, disconnect to force showing the account chooser
+      if (forceChooser) {
+        try {
+          await _googleSignIn.disconnect();
+        } catch (_) {
+          // ignore disconnect errors
+        }
+      }
 
-      // Attempt to sign in
+      GoogleSignInAccount? restored;
+      try {
+        restored = await _googleSignIn.signInSilently();
+      } catch (e) {
+        restored = null;
+      }
+
+      if (restored != null && !forceChooser) {
+        // Save to reactive field
+        googleAccount.value = restored;
+
+        if (context != null) {
+          await showGoogleAccountPanel(context, restored);
+        } else {
+          await _handleGoogleAccount(restored);
+        }
+        return;
+      }
+
       final GoogleSignInAccount? account = await _googleSignIn.signIn();
-
       if (account == null) {
-        // User cancelled the sign-in
-        ToastDialogs.showErrorIconNotification(
-          message: 'Google sign-in cancelled',
-        );
+        // user cancelled
+        ToastDialogs.showErrorIconNotification(message: 'Google sign-in cancelled');
         return;
       }
 
-      // Get authentication details
-      final GoogleSignInAuthentication auth = await account.authentication;
+      // set reactive field
+      googleAccount.value = account;
 
-      if (auth.accessToken == null) {
-        ToastDialogs.showErrorIconNotification(
-          message: 'Failed to get Google access token',
-        );
-        return;
-      }
-
-      // Call API with Google access token
-      await authApiCalls.callGoogleAuth(auth.accessToken!).fold(
-        (failure) {
-          ToastDialogs.showErrorIconNotification(
-            message: failure.message ?? 'Google sign-in failed',
-          );
-          print('Google Sign-In API Error: ${failure.message}');
-        },
-        (loginResponseModel) async {
-          await Utils.saveToken(
-            loginResponseModel.refreshToken,
-            loginResponseModel.accessToken,
-          );
-
-          // Navigate to main screen
-          Get.offNamedUntil(Routes.main, (route) => false);
-        },
-      );
+      // continue with normal processing
+      await _handleGoogleAccount(account);
     } on PlatformException catch (error) {
-      // Handle platform-specific errors
       String errorMessage = 'Google sign-in failed';
-
       switch (error.code) {
         case 'sign_in_failed':
-          errorMessage =
-              'Google sign-in not properly configured. Please check Firebase setup.';
+          errorMessage = 'Google sign-in not properly configured. Please check OAuth setup.';
           break;
         case 'network_error':
-          errorMessage =
-              'Network error. Please check your internet connection.';
+          errorMessage = 'Network error. Please check your internet connection.';
           break;
         case 'sign_in_canceled':
           errorMessage = 'Sign-in cancelled';
@@ -557,18 +647,151 @@ class LoginController extends GetxController {
         default:
           errorMessage = 'Google sign-in failed: ${error.message}';
       }
-
       ToastDialogs.showErrorIconNotification(message: errorMessage);
-      print('Google Sign-In Platform Error: ${error.code} - ${error.message}');
-    } catch (error) {
+      debugPrint('Google Sign-In Platform Error: ${error.code} - ${error.message}');
+    } catch (error, st) {
       ToastDialogs.showErrorIconNotification(
         message: 'An unexpected error occurred during Google sign-in',
       );
-      print('Google Sign-In Unexpected Error: $error');
+      debugPrint('Google Sign-In Unexpected Error: $error\n$st');
     } finally {
-      isLoading.value = false;
+      isGoogleLoading.value = false;
     }
   }
+
+  // handle a Google account after selection/restoration
+  Future<void> _handleGoogleAccount(GoogleSignInAccount account) async {
+    // get auth tokens
+    final GoogleSignInAuthentication auth = await account.authentication;
+    if (auth.accessToken == null) {
+      ToastDialogs.showErrorIconNotification(message: 'Failed to get Google access token');
+      return;
+    }
+
+    await authApiCalls.callGoogleAuth(auth.accessToken!).fold(
+          (failure) {
+        ToastDialogs.showErrorIconNotification(
+          message: failure.message ?? 'Google sign-in failed',
+        );
+        debugPrint('Google Sign-In API Error: ${failure.message}');
+      },
+          (loginResponseModel) async {
+        await Utils.saveToken(
+          loginResponseModel.refreshToken,
+          loginResponseModel.accessToken,
+        );
+
+        // Navigate to main screen
+        Get.offNamedUntil(Routes.main, (route) => false);
+      },
+    );
+  }
+
+// shows a bottom-sheet panel with the restored account and actions
+  Future<void> showGoogleAccountPanel(BuildContext context, GoogleSignInAccount account) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: false,
+      backgroundColor: Colors.transparent,
+      builder: (ctx) {
+        return SafeArea(
+          child: Container(
+            margin: const EdgeInsets.all(12),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Header
+                Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 22,
+                      backgroundImage: account.photoUrl != null ? NetworkImage(account.photoUrl!) : null,
+                      child: account.photoUrl == null ? Text(account.displayName?.substring(0, 1) ?? 'U') : null,
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            account.displayName ?? 'Google User',
+                            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(account.email, style: TextStyle(color: Colors.grey[600])),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 18),
+
+                // Continue as this account
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton.icon(
+                    onPressed: () async {
+                      Navigator.of(ctx).pop(); // close sheet
+                      // proceed with this account
+                      await _handleGoogleAccount(account);
+                    },
+                    icon: Icon(Icons.check_circle_outline),
+                    label: Text('Continue as ${account.email}'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF6B8E7F),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+
+                // Choose another account -> force native chooser
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton.icon(
+                    onPressed: () async {
+                      Navigator.of(ctx).pop(); // close sheet
+                      // Force chooser by disconnecting and then signIn
+                      try {
+                        await _googleSignIn.disconnect();
+                      } catch (_) {}
+                      final GoogleSignInAccount? newAccount = await _googleSignIn.signIn();
+                      if (newAccount == null) {
+                        ToastDialogs.showErrorIconNotification(message: 'Google sign-in cancelled');
+                        return;
+                      }
+                      googleAccount.value = newAccount;
+                      await _handleGoogleAccount(newAccount);
+                    },
+                    icon: Icon(Icons.swap_horiz),
+                    label: Text('Choose another account'),
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 12),
+                // Cancel
+                TextButton(
+                  onPressed: () => Navigator.of(ctx).pop(),
+                  child: Text('Cancel', style: TextStyle(color: Colors.grey[700])),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
 
   Future<void> signInWithTwitter() async {
     // For now, show coming soon message

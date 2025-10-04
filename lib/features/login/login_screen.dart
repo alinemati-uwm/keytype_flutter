@@ -124,15 +124,12 @@ class LoginScreen extends GetView<LoginController> {
             icon: 'assets/icons/google.svg',
             title: 'Continue with Google',
             subtitle: 'Fast and secure',
-            onTap: () {
-              ComingSoonModal.show(
-                context: context,
-                featureName: 'Google Sign In',
-                description: 'Quick and secure authentication with your Google account. We\'re working on integrating this feature!',
-                svgIcon: 'assets/icons/google.svg',
-                primaryColor: const Color.fromARGB(255, 204, 67, 52),
-              );
-            },
+            onTap: controller.isGoogleLoading.value
+                ? () {}
+                : () => controller.signInWithGoogle(context: context, forceChooser: false),
+            iconWidget: controller.isGoogleLoading.value
+                ? SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2))
+                : null,
             color: Colors.white,
             borderColor: Colors.grey[300]!,
             textColor: Colors.black87,
