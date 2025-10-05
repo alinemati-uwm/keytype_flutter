@@ -6,6 +6,7 @@ import 'package:keytype/core/auth/oauth_config.dart';
 import 'package:keytype/core/init/dependency_injection.dart';
 import 'package:keytype/core/network/auth/auth_api_calls.dart';
 import 'package:keytype/ui_imports.dart';
+import 'package:twitter_login/twitter_login.dart';
 import '../../core/helper/utils.dart';
 import '../../core/models/user_model/user_model.dart';
 import '../../core/storage/local_storage_manager.dart';
@@ -20,7 +21,8 @@ class LoginController extends GetxController {
   final rememberMe = false.obs;
   final showEmailForm = false.obs; // New state for showing email form
   final isLoadingResendEmail = false.obs; // Add loading state for resend email
-  
+  final RxBool isTwitterLoading = false.obs;
+
   // OTP verification states for registration
   final _otpHasError = false.obs;
   final _otpIsSuccess = false.obs;
@@ -44,6 +46,14 @@ class LoginController extends GetxController {
   final lastNameFocusNode = FocusNode();
   final confirmPasswordFocusNode = FocusNode();
   final authApiCalls = getIt<AuthApiCalls>();
+
+
+
+  // just test , should not keep them here :
+
+  final String _apiKey = 'TWITTER_API_KEY';
+  final String _apiSecret = 'TWITTER_API_SECRET';
+  final String _redirectUri = 'app://callback';
 
   // google login
   final RxBool isGoogleLoading = false.obs;
@@ -793,11 +803,76 @@ class LoginController extends GetxController {
   }
 
 
-  Future<void> signInWithTwitter() async {
-    // For now, show coming soon message
-    ToastDialogs.showSuccessNotification(
-      title: 'Coming Soon',
-      message: 'Twitter login will be available soon!',
-    );
+
+
+  Future<void> signInWithTwitter({BuildContext? context}) async {
+    try {
+      isTwitterLoading.value = true;
+
+      final twitterLogin = TwitterLogin(
+        apiKey: _apiKey,
+        apiSecretKey: _apiSecret,
+        redirectURI: _redirectUri,
+      );
+
+      // Start the sign-in flow
+      final authResult = await twitterLogin.login();
+
+      switch (authResult.status) {
+        case TwitterLoginStatus.loggedIn:
+        // success: you have tokens and user info
+          final session = authResult.authToken;
+          final secret = authResult.authTokenSecret;
+
+          // quick user info (may be null depending on scopes)
+          final twitterUser = authResult.user;
+
+          // Example log / toast
+          final email = twitterUser?.email;
+          final name = twitterUser?.name;
+          final username = twitterUser?.screenName;
+
+          // or use them to call Twitter APIs on behalf of the user
+
+          if (context != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Signed in as ${username ?? name ?? 'Twitter user'}')),
+            );
+          }
+
+          // optionally navigate
+          break;
+
+        case TwitterLoginStatus.cancelledByUser:
+          if (context != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Twitter sign-in cancelled')),
+            );
+          }
+          break;
+
+        case TwitterLoginStatus.error:
+          final err = authResult.errorMessage ?? 'Unknown error';
+          if (context != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Twitter sign-in failed: $err')),
+            );
+          }
+          break;
+        case null:
+          // TODO: Handle this case.
+          throw UnimplementedError();
+      }
+    } catch (e, st) {
+      debugPrint('Twitter sign-in error: $e\n$st');
+      if (context != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('An unexpected error occurred during Twitter sign-in')),
+        );
+      }
+    } finally {
+      isTwitterLoading.value = false;
+    }
   }
 }
+

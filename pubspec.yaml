@@ -49,6 +49,7 @@ dependencies:
   readmore: ^3.0.0
   markdown_widget: ^2.3.2+6
   flutter_dotenv: ^6.0.0
+  twitter_login: ^4.4.2
 
 dev_dependencies:
   flutter_test:

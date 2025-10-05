@@ -144,15 +144,11 @@ class LoginScreen extends GetView<LoginController> {
             icon: 'assets/icons/twitter.svg',
             title: 'Continue with Twitter',
             subtitle: 'Connect with friends',
-            onTap: () {
-              ComingSoonModal.show(
-                context: context,
-                featureName: 'Twitter Sign In',
-                description: 'Connect with your Twitter account for seamless login. This feature is coming soon with enhanced security!',
-                svgIcon: 'assets/icons/twitter.svg',
-                primaryColor: const Color(0xFF1877F2),
-              );
-            },
+
+              onTap: controller.isTwitterLoading.value
+                  ? () {}
+                  : () => controller.signInWithTwitter(context: context),
+
             color: Color(0xFF1877F2),
             borderColor: Color(0xFF1877F2),
             textColor: Colors.white,
